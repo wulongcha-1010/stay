@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 互动开始时整张卡片隐藏：页面上只有白色背景 + alert 弹窗 -->
+<main class="card hidden" id="card">
+  <h1 class="headline">这是给乐乐看的网页</h1>
+  <div class="photo-frame">
+    <img id="photo" src="1.jpg" alt="照片 1">
+    <p class="tap-hint">请持续点击</p>
+  </div>
+</main>
+
+<script>
+  var PAGE = {
+    image: '1.jpg',
+    alertAfterClick: 'start！',
+    next: 'step2.html'
+  };
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* =========================================================
+   生日祝福页面 · 公共样式
+   页面背景：纯白
+   照片外框：蓝 · 绿 · 橙 渐变（保持不变）
+   ========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "HarmonyOS Sans SC", "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #1c4a5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card {
+  width: min(92vw, 680px);
+  max-height: 94vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border: 1px solid #eef2f5;
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(28, 74, 94, .10);
+  padding: 26px 26px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 标题类文字：正楷字，字心是白色，颜色只在字的边缘（橙色描边） */
+.title,
+.headline,
+.wish {
+  font-family: "KaiTi", "楷体", "STKaiti", "华文楷体", "Kaiti SC", "Microsoft YaHei", "微软雅黑", serif;
+  font-weight: 700;
+  color: #ffffff;
+  -webkit-text-stroke: 1.9px #d9660f;
+  paint-order: stroke fill;
+}
+
+/* 第一张图片上方的大字幕 */
+.headline {
+  font-size: clamp(24px, 3.4vw, 34px);
+  letter-spacing: 4px;
+  text-align: center;
+  line-height: 1.5;
+  -webkit-text-stroke: 2.8px #d9660f;
+}
+
+/* 最后一页图片上方的标题 */
+.title {
+  font-size: clamp(20px, 2.6vw, 24px);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* 照片外框：蓝 → 绿 → 橙 渐变描边 */
+.photo-frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px 8px;
+  border: 3px solid transparent;
+  border-radius: 18px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #2f7fd1, #2fae7a, #f08a2e) border-box;
+}
+
+#photo {
+  max-width: 100%;
+  max-height: 44vh;
+  border-radius: 10px;
+  display: block;
+}
+
+/* 外框最下面的提示小字 */
+.tap-hint {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #1c4a5e;
+  opacity: .32;
+}
+
+.wish {
+  width: 100%;
+  font-size: clamp(17px, 2.3vw, 21px);
+  line-height: 2.2;
+  letter-spacing: 1px;
+  text-align: center;
+  background: linear-gradient(135deg, #fffaf3 0%, #fff6ec 100%);
+  border: 1px solid #f6e3cf;
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.hint { font-size: 12px; color: #8aa2ad; text-align: center; }
+
+/* 4 张表情包：散在页面背景上，分别朝四个方向倾斜 */
+.emoji-scatter {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.emoji-scatter img {
+  position: absolute;
+  width: clamp(88px, 11vw, 165px);
+  height: auto;
+  padding: 6px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #2f7fd1, #2fae7a, #f08a2e) border-box;
+  box-shadow: 0 10px 26px rgba(28, 74, 94, .14);
+}
+/* 左上 */
+.emoji-scatter img:nth-child(1) { left: 5%;  top: 11%;    transform: rotate(-13deg); }
+/* 右上 */
+.emoji-scatter img:nth-child(2) { right: 5%; top: 8%;     transform: rotate(11deg); }
+/* 左下 */
+.emoji-scatter img:nth-child(3) { left: 7%;  bottom: 11%; transform: rotate(9deg); }
+/* 右下 */
+.emoji-scatter img:nth-child(4) { right: 6%; bottom: 8%;  transform: rotate(-15deg); }
+
+/* 窗口比较窄时把它们缩小一点，避免压住中间的卡片 */
+@media (max-width: 1000px) {
+  .emoji-scatter img { width: clamp(64px, 13vw, 110px); }
+}
+
+.hidden { display: none !important; }
+
+.pop { animation: pop .5s ease; }
+@keyframes pop {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 结尾：从天上飘落的生日装饰 */
+.confetti {
+  position: fixed;
+  top: -60px;
+  z-index: 5;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+@keyframes fall {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  8%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate(var(--drift, 0px), 112vh) rotate(var(--spin, 360deg)); opacity: .85; }
+}
